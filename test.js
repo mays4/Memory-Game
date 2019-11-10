@@ -11,6 +11,7 @@ let modal = document.getElementsByClassName('modal')[0];
 let closeIcon = document.querySelector('.close');
 let restart = document.querySelector('.restart');
 let buttonAgain = document.querySelector('.playAgain');
+const cardDeck = document.querySelector('.deck');
 
 createDeck();
 addListener();
@@ -78,11 +79,9 @@ newDeckList.appendChild(fragmentDeck);
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 function addListener() {
-    const cardDeck = document.querySelector('.deck');
     cardDeck.addEventListener('click',flip);
 }
 function RemoveListener(){
-    const cardDeck = document.querySelector('.deck');
     cardDeck.removeEventListener('click',flip);
 }
     
@@ -91,7 +90,8 @@ function flip(ev){
           
                 ev.target.classList.add('open','show');
                 openCards.push(ev.target);
-                console.log(openCards)
+                // console.log(openCards)
+                timerStart();
                 if (openCards.length === 2 ){
                       checkCards();
                     }
@@ -143,18 +143,13 @@ function complete(){
 }
 function moveCounter(){
     let counter = document.querySelector('.moves');
-   
     moves ++;
-    
     counter.innerHTML = moves;
-    timerStart();
-    
-        
         //remove stars
         const  stars = document.querySelectorAll('.fa-star');
         let starList =[...stars]
         // console.log(starList )
-        if (moves > 20 && moves < 30){
+        if (moves > 10 && moves < 16){
             for (i = 0; i < 3; i++){
                 if (i > 1){ 
                     starList[i].style.visibility ="hidden";
@@ -162,7 +157,7 @@ function moveCounter(){
                 }
             }
         }
-    else if (moves > 30){
+    else if (moves > 16){
         for (i=0; i < 3 ; i++){
             if (i > 0){      
                 starList[i].style.visibility = "hidden";   
@@ -176,21 +171,22 @@ function moveCounter(){
     let time = 0;
     let startTimer;
     const timer = document.querySelector('.timer');
-        
-        
-    function timerStart(){
-        time++;
+   
+    
+    function timerStart(){ 
+        time++; 
         startTimer = setInterval(function(){
             
         let mins = Math.floor(time/60);
         let sec = time % 60 ;
+     
         // console.log(sec);
         // console.log(mins);
         if (sec < 10){
             timer.innerHTML =`${mins} :0 ${sec}`;
         }
         else{
-            timer.innerHTML =`${mins} :${sec}`;
+            timer.innerHTML =`${mins} : ${sec}`;
         }
     },1000);
     }
@@ -198,7 +194,7 @@ function moveCounter(){
     
     function stopTimer(){
         clearInterval(startTimer);
-            sec = 0;
+             sec = 0;
             mins = 0;  
         }
              
