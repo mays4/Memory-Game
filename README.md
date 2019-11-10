@@ -1,5 +1,5 @@
 # Memory Game Project
-This project is about matching cards , each two cards similar 
+This project is about matching cards
 
 # instruction
 The project alrady have HTML and CSS file and js starter code
