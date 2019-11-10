@@ -167,36 +167,32 @@ function moveCounter(){
         }
     }
 
-    //timer
-    let time = 0;
-    let startTimer;
-    const timer = document.querySelector('.timer');
-   
+//timer
+let time = 0;
+let startTimer;
+const timer = document.querySelector('.timer');
+function timerStart(){ 
+    time++; 
+    startTimer = setInterval(function(){
+        
+    let mins = Math.floor(time/60);
+    let sec = time % 60 ;
     
-    function timerStart(){ 
-        time++; 
-        startTimer = setInterval(function(){
-            
-        let mins = Math.floor(time/60);
-        let sec = time % 60 ;
-     
-        // console.log(sec);
-        // console.log(mins);
-        if (sec < 10){
-            timer.innerHTML =`${mins} :0 ${sec}`;
-        }
-        else{
-            timer.innerHTML =`${mins} : ${sec}`;
-        }
-    },1000);
+    // console.log(sec);
+    // console.log(mins);
+    if (sec < 10){
+        timer.innerHTML =`${mins} :0 ${sec}`;
     }
-     
-    
-    function stopTimer(){
-        clearInterval(startTimer);
-             sec = 0;
-            mins = 0;  
-        }
+    else{
+        timer.innerHTML =`${mins} : ${sec}`;
+    }
+},1000);
+} 
+function stopTimer(){
+    clearInterval(startTimer);
+            sec = 0;
+        mins = 0;  
+    }
              
         
 function youWon(){
